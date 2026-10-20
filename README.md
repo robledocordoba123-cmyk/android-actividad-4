@@ -14,6 +14,14 @@ Aplicaciones Móviles Android · SENA ADSO · Manuela Córdoba Robledo
 
 Las pantallas de Registro y Recuperar son **solo diseño**: no usan `remember` ni `mutableStateOf`, los campos tienen valores de ejemplo y los botones tienen `onClick` vacío. Stitch entregó el diseño en HTML, así que se pasó a Jetpack Compose con las mismas reglas del prompt de conversión de la guía. Cada una tiene su `@Preview`.
 
+## Las pantallas corriendo en el emulador
+
+Capturas tomadas en el emulador (Medium Phone, API 37). Como la app no tiene navegación, para ver Registro y Recuperar se cambia en `MainActivity.kt` la pantalla que se llama dentro del `Surface`.
+
+| Login | Registro | Recuperar contraseña |
+|:---:|:---:|:---:|
+| <img src="docs/capturas/login.png" alt="Login" width="250"> | <img src="docs/capturas/registro.png" alt="Registro" width="250"> | <img src="docs/capturas/recuperar.png" alt="Recuperar contraseña" width="250"> |
+
 ## Cómo probarlo
 
 1. Abrir el proyecto en Android Studio y hacer **Sync**.
