@@ -1,210 +1,355 @@
 package com.example.composable.ui.screen
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+// Código generado por Google Stitch (proyecto AppLoginTutorial, Prompt 1 - Registro).
+// Cambios para adaptarlo al proyecto:
+// - package com.example.composable.ui.screen y nombre RegistroScreen (Stitch lo llamó RegisterScreen)
+// - se quitó verticalScroll(rememberScrollState()) porque la actividad pide no usar remember
+// - systemBarsPadding() para que la flecha no quede debajo de la barra de estado
+// - el Preview usa ComposableTheme, el tema del proyecto
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material3.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.composable.ui.theme.ComposableTheme
 
-// Colores índigo y gris del diseño hecho en Google Stitch
-private val Indigo = Color(0xFF4F46E5)
-private val IndigoOscuro = Color(0xFF3525CD)
-private val GrisTexto = Color(0xFF464555)
-private val GrisBorde = Color(0xFFC7C4D8)
-private val FondoClaro = Color(0xFFF8F9FF)
+// Paleta de colores Índigo & Grises (Material Design 3)
+private val IndigoPrimary = Color(0xFF4F46E5)
+private val IndigoContainer = Color(0xFFEEF2FF)
+private val BackgroundSurface = Color(0xFFF8FAFC)
+private val NeutralDark = Color(0xFF0F172A)
+private val NeutralMuted = Color(0xFF64748B)
+private val BorderLight = Color(0xFFE2E8F0)
 
-// Pantalla de Registro: solo diseño visual, sin lógica ni navegación
 @Composable
 fun RegistroScreen() {
-    Scaffold(containerColor = FondoClaro) { paddingValues ->
-        LazyColumn(
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = BackgroundSurface
+    ) {
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .padding(horizontal = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .systemBarsPadding()
+                .padding(horizontal = 24.dp)
+                .padding(top = 16.dp, bottom = 32.dp)
         ) {
-            // 1. Flecha hacia atrás
-            item {
-                Box(modifier = Modifier.fillMaxWidth()) {
-                    IconButton(onClick = { }) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Volver",
-                            tint = IndigoOscuro
+            // 1. Botón de flecha hacia atrás arriba a la izquierda
+            IconButton(
+                onClick = {},
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .background(Color.White)
+                    .border(1.dp, BorderLight, CircleShape)
+                    .size(42.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "Volver",
+                    tint = NeutralDark
+                )
+            }
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // 2. Título grande: "Crea tu cuenta"
+            Text(
+                text = "Crea tu cuenta",
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+                color = NeutralDark
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+
+            // 3. Subtítulo: "Empieza tu viaje con nosotros"
+            Text(
+                text = "Empieza tu viaje con nosotros",
+                fontSize = 15.sp,
+                color = NeutralMuted
+            )
+            Spacer(modifier = Modifier.height(28.dp))
+
+            // 4. Campo: "Nombre completo" con icono de persona
+            OutlinedTextField(
+                value = "Carlos Mendoza",
+                onValueChange = {},
+                label = { Text("Nombre completo") },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Person,
+                        contentDescription = "Icono Nombre",
+                        tint = IndigoPrimary
+                    )
+                },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = IndigoPrimary,
+                    unfocusedBorderColor = BorderLight,
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White
+                )
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // 5. Campo: "Correo electrónico" con icono de sobre
+            OutlinedTextField(
+                value = "carlos.mendoza@ejemplo.com",
+                onValueChange = {},
+                label = { Text("Correo electrónico") },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Email,
+                        contentDescription = "Icono Correo",
+                        tint = IndigoPrimary
+                    )
+                },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = IndigoPrimary,
+                    unfocusedBorderColor = BorderLight,
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White
+                )
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // 6. Campo: "Contraseña" con icono de candado y ojo
+            OutlinedTextField(
+                value = "password1234",
+                onValueChange = {},
+                label = { Text("Contraseña") },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Lock,
+                        contentDescription = "Icono Contraseña",
+                        tint = IndigoPrimary
+                    )
+                },
+                trailingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Visibility,
+                        contentDescription = "Alternar visibilidad",
+                        tint = NeutralMuted
+                    )
+                },
+                visualTransformation = PasswordVisualTransformation(),
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = IndigoPrimary,
+                    unfocusedBorderColor = BorderLight,
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White
+                )
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // 7. Campo: "Confirmar contraseña" con icono de candado
+            OutlinedTextField(
+                value = "password1234",
+                onValueChange = {},
+                label = { Text("Confirmar contraseña") },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Lock,
+                        contentDescription = "Icono Confirmar Contraseña",
+                        tint = IndigoPrimary
+                    )
+                },
+                visualTransformation = PasswordVisualTransformation(),
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = IndigoPrimary,
+                    unfocusedBorderColor = BorderLight,
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White
+                )
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // 8. Checkbox: "Acepto los términos y condiciones"
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Checkbox(
+                    checked = true,
+                    onCheckedChange = {},
+                    colors = CheckboxDefaults.colors(
+                        checkedColor = IndigoPrimary,
+                        checkmarkColor = Color.White
+                    )
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                val termsText = buildAnnotatedString {
+                    append("Acepto los ")
+                    withStyle(style = SpanStyle(color = IndigoPrimary, fontWeight = FontWeight.SemiBold)) {
+                        append("términos y condiciones")
+                    }
+                }
+                Text(
+                    text = termsText,
+                    fontSize = 14.sp,
+                    color = NeutralDark
+                )
+            }
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // 9. Botón principal: "Crear cuenta"
+            Button(
+                onClick = {},
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(54.dp),
+                shape = RoundedCornerShape(14.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = IndigoPrimary,
+                    contentColor = Color.White
+                )
+            ) {
+                Text(
+                    text = "Crear cuenta",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // 10. Separador: "O regístrate con"
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                HorizontalDivider(
+                    modifier = Modifier.weight(1f),
+                    color = BorderLight
+                )
+                Text(
+                    text = "O regístrate con",
+                    fontSize = 13.sp,
+                    color = NeutralMuted,
+                    modifier = Modifier.padding(horizontal = 14.dp)
+                )
+                HorizontalDivider(
+                    modifier = Modifier.weight(1f),
+                    color = BorderLight
+                )
+            }
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // 11. Botón: "Continuar con Google" con icono
+            OutlinedButton(
+                onClick = {},
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(52.dp),
+                shape = RoundedCornerShape(14.dp),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    containerColor = Color.White,
+                    contentColor = NeutralDark
+                ),
+                border = ButtonDefaults.outlinedButtonBorder().copy(
+                    brush = SolidColor(BorderLight)
+                )
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    // Círculo representativo para el logo de Google
+                    Box(
+                        modifier = Modifier
+                            .size(22.dp)
+                            .clip(CircleShape)
+                            .background(IndigoContainer),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "G",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = IndigoPrimary
                         )
                     }
-                }
-            }
-
-            // 2 y 3. Título y subtítulo
-            item {
-                Column(modifier = Modifier.fillMaxWidth()) {
+                    Spacer(modifier = Modifier.width(10.dp))
                     Text(
-                        text = "Crea tu cuenta",
-                        fontSize = 28.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFF0B1C30)
-                    )
-                    Text(
-                        text = "Empieza tu viaje con nosotros",
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = GrisTexto
+                        text = "Continuar con Google",
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Medium
                     )
                 }
-                Spacer(modifier = Modifier.height(24.dp))
             }
+            Spacer(modifier = Modifier.height(28.dp))
 
-            // 4 a 7. Campos del formulario con valores de ejemplo
-            item {
-                CampoRegistro(
-                    etiqueta = "Nombre completo",
-                    valor = "Carlos Mendoza",
-                    icono = { Icon(Icons.Default.Person, contentDescription = null) },
-                    iconoFinal = { Icon(Icons.Default.CheckCircle, contentDescription = null, tint = Indigo) }
-                )
-                CampoRegistro(
-                    etiqueta = "Correo electrónico",
-                    valor = "carlos.mendoza@ejemplo.com",
-                    icono = { Icon(Icons.Default.Email, contentDescription = null) },
-                    iconoFinal = { Icon(Icons.Default.CheckCircle, contentDescription = null, tint = Indigo) }
-                )
-                CampoRegistro(
-                    etiqueta = "Contraseña",
-                    valor = "contrasena123",
-                    esContrasena = true,
-                    icono = { Icon(Icons.Default.Lock, contentDescription = null) },
-                    iconoFinal = { Icon(Icons.Default.Visibility, contentDescription = "Mostrar contraseña") }
-                )
-                CampoRegistro(
-                    etiqueta = "Confirmar contraseña",
-                    valor = "contrasena123",
-                    esContrasena = true,
-                    icono = { Icon(Icons.Default.Lock, contentDescription = null) }
-                )
-            }
-
-            // 8. Checkbox de términos (marcado de ejemplo)
-            item {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Checkbox(
-                        checked = true,
-                        onCheckedChange = null,
-                        colors = CheckboxDefaults.colors(checkedColor = Indigo)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Acepto los ", color = GrisTexto)
-                    Text("términos y condiciones", color = Indigo, fontWeight = FontWeight.SemiBold)
+            // 12. Pie: "¿Ya tienes una cuenta? Inicia sesión"
+            val footerText = buildAnnotatedString {
+                append("¿Ya tienes una cuenta? ")
+                withStyle(style = SpanStyle(color = IndigoPrimary, fontWeight = FontWeight.Bold)) {
+                    append("Inicia sesión")
                 }
-                Spacer(modifier = Modifier.height(16.dp))
             }
-
-            // 9. Botón principal
-            item {
-                Button(
-                    onClick = { },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(52.dp),
-                    shape = MaterialTheme.shapes.medium,
-                    colors = ButtonDefaults.buttonColors(containerColor = Indigo)
-                ) {
-                    Text("Crear cuenta", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = null)
-                }
-                Spacer(modifier = Modifier.height(24.dp))
-            }
-
-            // 10. Separador
-            item {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    HorizontalDivider(modifier = Modifier.weight(1f), color = GrisBorde)
-                    Text(" O regístrate con ", color = GrisTexto, fontSize = 14.sp)
-                    HorizontalDivider(modifier = Modifier.weight(1f), color = GrisBorde)
-                }
-                Spacer(modifier = Modifier.height(16.dp))
-            }
-
-            // 11. Botón de Google
-            item {
-                OutlinedButton(
-                    onClick = { },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(52.dp)
-                ) {
-                    Text("G", color = Color(0xFF4285F4), fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                    Spacer(modifier = Modifier.width(12.dp))
-                    Text("Continuar con Google", color = Color(0xFF0B1C30), fontWeight = FontWeight.Medium)
-                }
-                Spacer(modifier = Modifier.height(16.dp))
-            }
-
-            // 12. Pie de página
-            item {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("¿Ya tienes una cuenta? ", color = GrisTexto)
-                    TextButton(onClick = { }) {
-                        Text("Inicia sesión", color = Indigo, fontWeight = FontWeight.Bold)
-                    }
-                }
-                Spacer(modifier = Modifier.height(16.dp))
-            }
+            Text(
+                text = footerText,
+                fontSize = 14.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }
 
-// Campo de texto reutilizable con un valor fijo de ejemplo
-@Composable
-private fun CampoRegistro(
-    etiqueta: String,
-    valor: String,
-    icono: @Composable () -> Unit,
-    esContrasena: Boolean = false,
-    iconoFinal: (@Composable () -> Unit)? = null
-) {
-    OutlinedTextField(
-        value = valor,
-        onValueChange = { },
-        label = { Text(etiqueta) },
-        leadingIcon = icono,
-        trailingIcon = iconoFinal,
-        visualTransformation = if (esContrasena) PasswordVisualTransformation() else VisualTransformation.None,
-        singleLine = true,
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = Indigo,
-            unfocusedBorderColor = GrisBorde
-        ),
-        modifier = Modifier.fillMaxWidth()
-    )
-    Spacer(modifier = Modifier.height(12.dp))
-}
-
-@Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 390, heightDp = 844)
 @Composable
 private fun PreviewRegistro() {
     ComposableTheme {
